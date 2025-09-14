@@ -1,7 +1,7 @@
 import { ArticleRepository } from "@application/protocols/db/article-repository";
 import { Module } from "@nestjs/common";
 import { PrismaService } from "./prisma.service";
-import { PrismaArticleRepository } from "./repositories/prisma-article-repository";
+import { PrismaArticleRepository } from "./prisma/repositories/prisma-article-repository";
 
 @Module({
   providers: [

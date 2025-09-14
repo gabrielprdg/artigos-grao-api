@@ -24,6 +24,9 @@
       "@application/*": [
         "./src/application/*"
       ],
+      "@presentation/*": [
+        "./src/presentation/*"
+      ],
       "@helpers/*": [
         "./src/helpers/*"
       ],
@@ -36,3 +39,4 @@
     }
   }
 }
+
