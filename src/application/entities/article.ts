@@ -14,7 +14,7 @@ export class Article {
   private props: ArticleModel;
 
   constructor(
-    props: Replace<ArticleModel, { createdAt?: Date; tags?: string[] }>,
+    props: Replace<ArticleModel, { createdAt?: Date }>,
     id?: string,
   ) {
     this._id = id ?? randomUUID();
