@@ -30,4 +30,25 @@ export class PrismaArticleRepository implements ArticleRepository {
 
     return PrismaArticleMapper.toArrayDomain(articles);
   }
+
+  async findById(id: string): Promise<Article | null> {
+    const article = await this.prismaService.article.findUnique({
+      where: { id },
+    });
+
+    if (!article) {
+      return null;
+    }
+
+    return PrismaArticleMapper.toDomain(article);
+  }
+
+  async update(article: Article): Promise<void> {
+    const raw = PrismaArticleMapper.toPrisma(article);
+
+    await this.prismaService.article.update({
+      where: { id: article.id },
+      data: raw,
+    });
+  }
 }
