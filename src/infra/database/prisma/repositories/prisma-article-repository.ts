@@ -20,4 +20,14 @@ export class PrismaArticleRepository implements ArticleRepository {
 
     return createdArticle.id;
   }
+
+  async loadAll(): Promise<Article[]> {
+    const articles = await this.prismaService.article.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return PrismaArticleMapper.toArrayDomain(articles);
+  }
 }

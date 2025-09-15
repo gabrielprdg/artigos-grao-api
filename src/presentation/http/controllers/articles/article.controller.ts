@@ -1,6 +1,8 @@
 import { AddArticle } from "@application/use-cases/article/add-article";
+import { LoadArticles } from "@application/use-cases/article/load-articles";
 import { AddArticleBody } from "@presentation/http/dtos/add-article-body";
-import { Body, Controller, HttpCode, Logger, Post } from "@nestjs/common";
+import { ArticleViewModel } from "@presentation/http/view-model/article-view-model";
+import { Body, Controller, Get, HttpCode, Logger, Post } from "@nestjs/common";
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 
 @ApiTags('articles')
@@ -10,7 +12,8 @@ export class ArticleController {
   private readonly logger = new Logger(ArticleController.name);
 
   constructor(
-    private readonly addArticle: AddArticle
+    private readonly addArticle: AddArticle,
+    private readonly loadArticles: LoadArticles
   ) {}
 
   @Post()
@@ -30,5 +33,17 @@ export class ArticleController {
     });
 
     return { id };
+  }
+
+  @Get()
+  @HttpCode(200)
+  @ApiOperation({ summary: 'Get all articles' })
+  @ApiResponse({ status: 200, description: 'Articles retrieved successfully' })
+  async loadAll() {
+    this.logger.log('[GET] /articles');
+
+    const articles = await this.loadArticles.execute();
+
+    return articles.map(ArticleViewModel.toHTTP);
   }
 }

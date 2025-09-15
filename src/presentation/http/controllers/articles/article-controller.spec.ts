@@ -1,11 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ArticleController } from './article.controller';
 import { AddArticle } from '@application/use-cases/article/add-article';
+import { LoadArticles } from '@application/use-cases/article/load-articles';
 import { AddArticleBody } from '@presentation/http/dtos/add-article-body';
+import { Article } from '@application/entities/article';
 
 describe('ArticleController', () => {
   let controller: ArticleController;
   let addArticle: jest.Mocked<AddArticle>;
+  let loadArticles: jest.Mocked<LoadArticles>;
 
   beforeEach(async () => {
     const mockAddArticle = {
