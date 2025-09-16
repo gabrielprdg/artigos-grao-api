@@ -179,26 +179,7 @@ A aplicação inclui suporte Docker com os seguintes serviços:
 - **artigos_db**: Banco de dados MySQL 8.0
 - **artigos_api**: Aplicação NestJS
 
-### Comandos Docker
 
-```bash
-# Iniciar todos os serviços
-sudo docker-compose up
-
-# Iniciar serviços em background
-sudo docker-compose up -d
-
-# Rebuildar e iniciar
-sudo docker-compose up --build
-
-# Parar todos os serviços
-sudo docker-compose down
-
-# Visualizar logs
-sudo docker-compose logs -f
-
-# Acessar container do banco
-sudo docker exec -it artigos_grao_db mysql -u root -p
 ```
 
 ## 📁 Estrutura do Projeto
@@ -231,14 +212,3 @@ npm run lint
 npm run build
 ```
 
-## 🤝 Contribuindo
-
-1. Faça um fork do repositório
-2. Crie uma branch para sua funcionalidade
-3. Faça suas alterações
-4. Execute os testes
-5. Submeta um pull request
-
-## 📄 Licença
-
-Este projeto está licenciado sob a licença UNLICENSED.
