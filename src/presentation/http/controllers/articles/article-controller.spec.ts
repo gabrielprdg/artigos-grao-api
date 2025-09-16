@@ -1,17 +1,32 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { ArticleController } from './article.controller';
 import { AddArticle } from '@application/use-cases/article/add-article';
 import { LoadArticles } from '@application/use-cases/article/load-articles';
+import { LoadArticleById } from '@application/use-cases/article/load-article-by-id';
+import { UpdateArticleById } from '@application/use-cases/article/update-article-by-id';
+import { Test, TestingModule } from '@nestjs/testing';
 import { AddArticleBody } from '@presentation/http/dtos/add-article-body';
-import { Article } from '@application/entities/article';
+import { ArticleController } from './article.controller';
 
 describe('ArticleController', () => {
   let controller: ArticleController;
   let addArticle: jest.Mocked<AddArticle>;
   let loadArticles: jest.Mocked<LoadArticles>;
+  let loadArticleById: jest.Mocked<LoadArticleById>;
+  let updateArticleById: jest.Mocked<UpdateArticleById>;
 
   beforeEach(async () => {
     const mockAddArticle = {
+      execute: jest.fn(),
+    };
+
+    const mockLoadArticles = {
+      execute: jest.fn(),
+    };
+
+    const mockLoadArticleById = {
+      execute: jest.fn(),
+    };
+
+    const mockUpdateArticleById = {
       execute: jest.fn(),
     };
 
@@ -22,11 +37,26 @@ describe('ArticleController', () => {
           provide: AddArticle,
           useValue: mockAddArticle,
         },
+        {
+          provide: LoadArticles,
+          useValue: mockLoadArticles,
+        },
+        {
+          provide: LoadArticleById,
+          useValue: mockLoadArticleById,
+        },
+        {
+          provide: UpdateArticleById,
+          useValue: mockUpdateArticleById,
+        },
       ],
     }).compile();
 
     controller = module.get<ArticleController>(ArticleController);
     addArticle = module.get(AddArticle);
+    loadArticles = module.get(LoadArticles);
+    loadArticleById = module.get(LoadArticleById);
+    updateArticleById = module.get(UpdateArticleById);
   });
 
   describe('create', () => {
@@ -95,4 +125,6 @@ describe('ArticleController', () => {
       expect(result).toEqual(expectedResult);
     });
   });
+
+  
 });

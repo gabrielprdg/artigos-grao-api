@@ -11,6 +11,7 @@ const config: Config = {
   testEnvironment: 'node',
   moduleNameMapper: {
     '^@application/(.*)$': '<rootDir>/src/application/$1',
+    '^@presentation/(.*)$': '<rootDir>/src/presentation/$1',
     '^@helpers/(.*)$': '<rootDir>/src/helpers/$1',
     '^@infra/(.*)$': '<rootDir>/src/infra/$1',
     '^@test/(.*)$': '<rootDir>/test/$1',
