@@ -170,6 +170,9 @@ npx prisma studio
 
 # Resetar banco de dados
 npx prisma db reset
+
+# Executar seeds (popular dados iniciais)
+npx prisma db seed
 ```
 
 ## 🐳 Configuração Docker
