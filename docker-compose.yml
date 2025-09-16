@@ -1,19 +1,26 @@
-version: "3.9"
-
 services:
-  mysql:
-    image: mysql:8
-    container_name: artigos-grao-mysql
-    restart: always
+  db:
+    image: mysql:8.0
+    container_name: artigos_grao_db
     environment:
-      MYSQL_ROOT_PASSWORD: mysql
-      MYSQL_DATABASE: article_db        
-      MYSQL_USER: mysql                
-      MYSQL_PASSWORD: mysql
+      - MYSQL_ROOT_PASSWORD=mysql
+      - MYSQL_DATABASE=article_db
     ports:
-      - "3306:3306"
+      - 3307:3306
+    # Create a volume to persist data
     volumes:
       - mysql_data:/var/lib/mysql
-
+  artigos_api:
+    build: .
+    container_name: artigos_grao_api
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=mysql://root:mysql@db:3306/article_db
+    ports:
+      - "3000:3000"
+      - "5555:5555"
+    command: npm run start
 volumes:
   mysql_data:
