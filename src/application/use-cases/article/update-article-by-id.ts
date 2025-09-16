@@ -8,6 +8,7 @@ interface UpdateArticleRequest {
   title?: string;
   content?: string;
   author?: string;
+  url?: string;
   tags?: string[];
 }
 
@@ -28,6 +29,7 @@ export class UpdateArticleById {
       title: data.title ?? existingArticle.title,
       content: data.content ?? existingArticle.content,
       author: data.author ?? existingArticle.author,
+      url: data.url ?? existingArticle.url,
       tags: data.tags ?? existingArticle.tags,
       createdAt: existingArticle.createdAt,
     }, existingArticle.id);

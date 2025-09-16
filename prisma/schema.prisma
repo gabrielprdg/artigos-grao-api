@@ -18,6 +18,7 @@ model Article {
   title     String
   content   String   @db.Text
   author    String
+  url       String?
   tags      Json?    // aqui vai armazenar um array de strings
   createdAt DateTime @default(now())
 }

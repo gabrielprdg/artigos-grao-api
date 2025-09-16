@@ -10,6 +10,7 @@ interface ArticleDataRequest {
   title: string;
   content: string;
   author: string;
+  url?: string;
   tags?: string[];
 }
 
@@ -20,12 +21,13 @@ export class AddArticle {
   ) {}
 
   async execute(articleData: ArticleDataRequest): Promise<ArticleDataResponse> {
-    const { title, content, author, tags } = articleData;
+    const { title, content, author, url, tags } = articleData;
 
     const article = new Article({
       title,
       content,
       author,
+      url,
       tags,
     });
 

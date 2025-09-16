@@ -28,12 +28,13 @@ export class ArticleController {
   @ApiResponse({ status: 400, description: 'Invalid article data' })
   async create(@Body() body: AddArticleBody) {
     this.logger.log('[POST] /article');
-    const { title, content, author, tags } = body;
+    const { title, content, author, url, tags } = body;
 
     const { id } = await this.addArticle.execute({
       title,
       content,
       author,
+      url,
       tags
     });
 

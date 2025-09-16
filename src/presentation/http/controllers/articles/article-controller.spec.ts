@@ -21,12 +21,14 @@ describe('ArticleController', () => {
     title: string;
     content: string;
     author: string;
+    url: string;
     tags: string[];
   }> = {}) => {
     return new Article({
       title: overrides.title || 'Test Article',
       content: overrides.content || 'Test content',
       author: overrides.author || 'Test Author',
+      url: overrides.url,
       tags: overrides.tags || ['test']
     }, overrides.id);
   };
@@ -35,6 +37,7 @@ describe('ArticleController', () => {
     title: 'Test Article',
     content: 'Test content',
     author: 'Test Author',
+    url: 'https://example.com/test-article',
     tags: ['test'],
     ...overrides
   });

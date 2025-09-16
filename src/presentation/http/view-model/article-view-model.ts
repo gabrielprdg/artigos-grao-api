@@ -7,6 +7,7 @@ export class ArticleViewModel {
       title: article.title,
       author: article.author,
       content: article.content,
+      url: article.url,
       tags: article.tags,
       createdAt: article.createdAt
     };

@@ -1,5 +1,5 @@
 import { Article } from "@application/entities/article";
-import { Article as RawArticle } from "generated/prisma/client";
+import { Article as RawArticle } from "@prisma/client";
 
 export class PrismaArticleMapper {
   static toPrisma(article: Article) {
@@ -8,6 +8,7 @@ export class PrismaArticleMapper {
       title: article.title,
       author: article.author,
       content: article.content,
+      url: article.url,
       tags: article.tags,
       createdAt: article.createdAt
     };
@@ -19,6 +20,7 @@ export class PrismaArticleMapper {
         title: raw.title,
         author: raw.author,
         content: raw.content,
+        url: raw.url || undefined,
         tags: Array.isArray(raw.tags) ? raw.tags as string[] : [],
         createdAt: raw.createdAt
       },
@@ -34,6 +36,7 @@ export class PrismaArticleMapper {
             title: article.title,
             author: article.author,
             content: article.content,
+            url: article.url || undefined,
             tags: Array.isArray(article.tags) ? article.tags as string[] : [],
             createdAt: article.createdAt
           },

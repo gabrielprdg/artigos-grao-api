@@ -5,6 +5,7 @@ export interface ArticleModel {
   title: string;
   content: string;
   author: string;
+  url?: string;
   tags?: string[];
   createdAt: Date;
 }
@@ -51,6 +52,14 @@ export class Article {
 
   public set author(author: string) {
     this.props.author = author;
+  }
+
+  public get url(): string | undefined {
+    return this.props.url;
+  }
+
+  public set url(url: string | undefined) {
+    this.props.url = url;
   }
 
   public get tags(): string[] {
